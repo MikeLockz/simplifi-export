@@ -1,0 +1,17 @@
+{
+  "name": "simplifi-export",
+  "version": "1.0.0",
+  "main": "generated-script.js",
+  "scripts": {
+    "export": "node quicken-exporter.js"
+  },
+  
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "playwright": "^1.53.1"
+  }
+}
