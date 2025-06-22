@@ -9,17 +9,11 @@ RUN npm ci --only=production
 # Copy application code
 COPY . .
 
-# Install system dependencies as root (without browsers)
-RUN npx playwright install-deps chromium
+# Install browsers with system dependencies
+RUN npx playwright install --with-deps chromium
 
-# Create exports directory and set ownership
-RUN mkdir -p /app/exports && chown -R pwuser:pwuser /app
+# Create exports directory
+RUN mkdir -p /app/exports
 
-# Switch to pwuser
-USER pwuser
-
-# Install only the browser binary as pwuser (without system deps)
-RUN npx playwright install chromium
-
-# Keep container running
+# Keep container running (as root)
 CMD ["tail", "-f", "/dev/null"]
