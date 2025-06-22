@@ -1,16 +1,18 @@
-FROM node:20-bookworm
+FROM mcr.microsoft.com/playwright:v1.53.1-noble
 
 WORKDIR /app
 
+# Copy package files
 COPY package*.json ./
 
-# Install project dependencies first (including Playwright)
+# Install dependencies
 RUN npm ci --only=production
 
-# Then install browsers with system dependencies
-RUN npx playwright install --with-deps
-
+# Copy the rest of your application
 COPY . .
+
+# Create exports directory
 RUN mkdir -p /app/exports
 
+# Keep container running (for development)
 CMD ["tail", "-f", "/dev/null"]
