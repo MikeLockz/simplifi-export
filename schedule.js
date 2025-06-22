@@ -1,11 +1,11 @@
 // scheduler.js
 const cron = require("node-cron");
-const FinancialDataExporter = require("./financial-exporter");
+const SimplifiExporter = require("./simplifi-export");
 
 // Run every day at 6 AM
 cron.schedule("0 6 * * *", async () => {
   console.log("Starting scheduled export...");
-  const exporter = new FinancialDataExporter();
+  const exporter = new SimplifiExporter();
   try {
     await exporter.run();
   } catch (error) {

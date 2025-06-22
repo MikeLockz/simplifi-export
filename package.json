@@ -1,9 +1,9 @@
 {
   "name": "simplifi-export",
   "version": "1.0.0",
-  "main": "generated-script.js",
+  "main": "simplifi-export.js",
   "scripts": {
-    "export": "node quicken-exporter.js"
+    "export": "node simplifi-export.js"
   },
   
   "keywords": [],

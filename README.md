@@ -1,9 +1,9 @@
 # Simplifi Export
 
-This project provides tools to export data from Simplifi and Quicken, including scripts for scheduled exports and CSV generation.
+This project provides tools to export data from Simplifi, including scripts for scheduled exports and CSV generation.
 
 ## Features
-- Export transactions from Simplifi and Quicken
+- Export transactions from Simplifi
 - Schedule automated exports
 - Output data as CSV files in the `exports/` directory
 
@@ -27,7 +27,7 @@ This project provides tools to export data from Simplifi and Quicken, including 
 ### Usage
 - To run the exporter script:
   ```sh
-  node quicken-exporter.js
+  node simplifi-export.js
   ```
 - To schedule exports, use the `schedule.js` script or set up a cron job as needed.
 
@@ -35,7 +35,7 @@ This project provides tools to export data from Simplifi and Quicken, including 
 - CSV files are saved in the `exports/` directory. These files are ignored by git as specified in `.gitignore`.
 
 ## Project Structure
-- `quicken-exporter.js` – Main script for exporting Quicken data
+- `simplifi-export.js` – Main script for exporting Simplifi data
 - `schedule.js` – Script for scheduling exports
 - `exports/` – Directory for exported CSV files
 - `.gitignore` – Ignores sensitive and build files

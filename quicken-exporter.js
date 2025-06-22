@@ -531,3 +531,5 @@ module.exports = QuickenSimplifiExporter;
 if (require.main === module) {
   main();
 }
+
+// This file is deprecated. Please use simplifi-export.js for all export operations.
