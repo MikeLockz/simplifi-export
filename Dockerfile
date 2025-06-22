@@ -1,18 +1,31 @@
-FROM mcr.microsoft.com/playwright:v1.40.0-focal
+FROM node:18-alpine
+
+# Install system dependencies (cached unless you change this layer)
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    freetype-dev \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
+
+# Set environment variables
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 WORKDIR /app
 
-# Install dependencies
+# Copy package files first (only rebuilds if dependencies change)
+COPY package*.json ./
+
+# Install npm dependencies (cached unless package*.json changes)
 RUN npm ci --only=production
 
-# Install Playwright browsers
-RUN npx playwright install
+# Don't use --with-deps on Alpine, we already installed dependencies above
+RUN npx playwright install chromium
 
-# Create exports directory
-RUN mkdir -p /app/exports
+# Copy source code last
+COPY . .
 
-# Make your main script executable
-RUN chmod +x /app/simplifi-export.js
-
-# Keep container running for scheduled execution
 CMD ["tail", "-f", "/dev/null"]
