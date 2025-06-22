@@ -2,9 +2,6 @@ FROM mcr.microsoft.com/playwright:v1.40.0-focal
 
 WORKDIR /app
 
-# Clone your repo (you'll need to provide the URL)
-RUN git clone https://github.com/MikeLockz/simplifi-export.git .
-
 # Install dependencies
 RUN npm ci --only=production
 
